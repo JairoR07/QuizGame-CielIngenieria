@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* =============================================
+   CIEL INGENIERÍA — QUIZ GAME · DESIGN SYSTEM
+   ============================================= */
+
+:root {
+    --ciel-primary: #062D6B;
+    --ciel-primary-hv: #0A3F96;
+    --ciel-blue: #1A6FD4;
+    --ciel-cyan: #4DB8FF;
+    --ciel-secondary: #00AEEF;
+    --ciel-accent: #F5A623;
+    --ciel-light: #F4F6FA;
+    --ciel-dark: #1F2933;
+    --ciel-success: #0A9272;
+    --ciel-danger: #A32D2D;
+    --ciel-border: #E2E8F0;
+    --ciel-muted: #8A9AB5;
+    --ciel-text: #2D3E5A;
+    --ciel-mono: 'IBM Plex Mono', monospace;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Sora', sans-serif;
+    background-color: var(--ciel-light);
+    color: var(--ciel-dark);
+    margin-bottom: 0;
+}
+
+/* ── NAVBAR ── */
+.navbar-ciel {
+    background-color: var(--ciel-primary) !important;
+    height: 56px;
+    padding: 0 1.5rem;
+}
+
+    .navbar-ciel .navbar-brand {
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navbar-ciel .nav-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--ciel-cyan);
+        display: inline-block;
+    }
+
+.navbar-secondary {
+    display: none;
+}
+
+/* ── CARD BASE ── */
+.card {
+    border: 1px solid var(--ciel-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 24px rgba(6,45,107,0.07) !important;
+    overflow: hidden;
+}
+
+.card-header-ciel {
+    background: var(--ciel-primary);
+    color: white;
+    padding: 1.4rem 1.75rem;
+    border-radius: 0 !important;
+}
+
+/* ── BUTTONS ── */
+.btn-ciel {
+    background-color: var(--ciel-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: 'Sora', sans-serif;
+    transition: background 0.2s;
+    padding: 0.75rem 1.5rem;
+}
+
+    .btn-ciel:hover, .btn-ciel:focus {
+        background-color: var(--ciel-primary-hv);
+        color: white;
+    }
+
+.btn-outline-danger {
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: 'Sora', sans-serif;
+}
+
+/* ── FORM CONTROLS ── */
+.form-control {
+    border: 1.5px solid var(--ciel-border);
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    background: #F8FAFD;
+    color: var(--ciel-primary);
+    padding: 0.75rem 1rem;
+    height: auto;
+    transition: border 0.2s;
+}
+
+    .form-control:focus {
+        border-color: var(--ciel-blue);
+        background: #fff;
+        box-shadow: none;
+    }
+
+/* ── PROGRESS BAR ── */
+.progress {
+    border-radius: 99px;
+    overflow: hidden;
+    height: 6px !important;
+    background-color: #EBF0F8;
+}
+
+.progress-bar {
+    font-weight: 600;
+    font-size: 11px;
+    background-color: var(--ciel-blue) !important;
+}
+
+/* ── OPTION CARDS (Question view) ── */
+.option-card {
+    border: 1.5px solid var(--ciel-border) !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+    background: #FAFBFE;
+}
+
+    .option-card:hover {
+        border-color: var(--ciel-blue) !important;
+        background: #F0F5FF;
+        transform: none;
+    }
+
+    .option-card.selected {
+        border-color: var(--ciel-primary) !important;
+        background: #EBF4FF;
+    }
+
+        .option-card.selected .option-letter {
+            background: var(--ciel-primary);
+            color: #fff;
+        }
+
+    .option-card .card-body {
+        padding: 0.85rem 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+.option-letter {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #EBF0F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #3D5273;
+    flex-shrink: 0;
+    font-family: var(--ciel-mono);
+}
+
+/* ── METRIC CARDS (Question header) ── */
+.metric-card {
+    background: #fff;
+    border: 1px solid var(--ciel-border) !important;
+    border-radius: 12px !important;
+    padding: 0.9rem 1.1rem;
+    box-shadow: none !important;
+}
+
+.metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ciel-muted);
+    margin: 0 0 4px;
+}
+
+.metric-value {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+    font-family: var(--ciel-mono);
+    color: var(--ciel-primary);
+}
+
+    .metric-value.text-success {
+        color: var(--ciel-success) !important;
+    }
+
+/* ── BADGE NIVEL ── */
+.badge-ciel {
+    background: var(--ciel-blue);
+    color: #fff;
+    border-radius: 8px;
+    font-family: var(--ciel-mono);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+}
+
+/* ── AVATAR ── */
+.player-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--ciel-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* ── RESULT PAGE ── */
+.result-banner {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+    .result-banner.banner-success {
+        background: var(--ciel-success);
+    }
+
+    .result-banner.banner-danger {
+        background: var(--ciel-danger);
+    }
+
+    .result-banner.banner-primary {
+        background: var(--ciel-primary);
+    }
+
+    .result-banner.banner-winner {
+        background: var(--ciel-primary);
+    }
+
+.result-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 1rem;
+}
+
+.result-prize-box {
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.result-prize-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ciel-muted);
+    margin: 0 0 6px;
+}
+
+.result-prize-value {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: var(--ciel-mono);
+    margin: 0;
+}
+
+.result-stat {
+    background: #F8FAFD;
+    border: 1px solid var(--ciel-border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.result-stat-label {
+    font-size: 11px;
+    color: var(--ciel-muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.result-stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ciel-primary);
+    font-family: var(--ciel-mono);
+    margin: 0;
+}
+
+/* Winner confetti dots */
+.confetti-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 1rem;
+}
+
+.confetti-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: ciel-bounce 0.8s infinite alternate;
+}
+
+    .confetti-dot:nth-child(1) {
+        background: var(--ciel-cyan);
+        animation-delay: 0s;
+    }
+
+    .confetti-dot:nth-child(2) {
+        background: var(--ciel-accent);
+        animation-delay: 0.12s;
+    }
+
+    .confetti-dot:nth-child(3) {
+        background: #fff;
+        animation-delay: 0.24s;
+    }
+
+    .confetti-dot:nth-child(4) {
+        background: var(--ciel-accent);
+        animation-delay: 0.36s;
+    }
+
+    .confetti-dot:nth-child(5) {
+        background: var(--ciel-cyan);
+        animation-delay: 0.48s;
+    }
+
+@keyframes ciel-bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-8px);
+    }
+}
+
+.winner-prize-box {
+    background: linear-gradient(135deg, var(--ciel-primary) 0%, var(--ciel-primary-hv) 100%);
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.winner-prize-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 8px;
+}
+
+.winner-prize-value {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ciel-accent);
+    font-family: var(--ciel-mono);
+    margin: 0;
+}
+
+.winner-prize-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+}
+
+/* ── INDEX PAGE ── */
+.index-tagline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ciel-blue);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.index-stat-card {
+    background: #fff;
+    border: 1px solid var(--ciel-border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.index-stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.icon-blue {
+    background: #EBF4FF;
+    color: var(--ciel-blue);
+}
+
+.icon-gold {
+    background: #FFF8E6;
+    color: #D4900A;
+}
+
+.icon-teal {
+    background: #E6FAF5;
+    color: var(--ciel-success);
+}
+
+.index-stat-label {
+    font-size: 12px;
+    color: var(--ciel-muted);
+    margin: 0 0 2px;
+}
+
+.index-stat-value {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ciel-primary);
+    margin: 0;
+    font-family: var(--ciel-mono);
+}
+
+.form-section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ciel-primary);
+    margin: 0 0 0.3rem;
+}
+
+.form-section-sub {
+    font-size: 13px;
+    color: var(--ciel-muted);
+    margin: 0 0 1.5rem;
+}
+
+.divider-ciel {
+    border: none;
+    border-top: 1px solid var(--ciel-border);
+    margin: 1.5rem 0;
+}
+
+/* ── FOOTER ── */
+footer.footer {
+    display: none;
+}
+
+footer.ciel-footer {
+    background: var(--ciel-primary);
+    color: rgba(255,255,255,0.7);
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 3rem;
+}
+
+/* ── UTILITIES ── */
+.text-ciel {
+    color: var(--ciel-primary) !important;
+}
+
+.text-muted {
+    color: var(--ciel-muted) !important;
+}
+
+.fw-mono {
+    font-family: var(--ciel-mono);
+}
+
+.btn:focus, .btn:active:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(26,111,212,0.2);
+}

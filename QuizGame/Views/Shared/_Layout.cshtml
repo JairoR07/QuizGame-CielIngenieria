@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ciel Ingeniería</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/QuizGame.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <nav class="navbar navbar-ciel navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <span class="nav-dot"></span>
+                Ciel Ingeniería — Quiz Game
+            </a>
+            <span class="fw-mono" style="font-size:12px;color:rgba(255,255,255,0.45);">v2.0</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-0">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="ciel-footer">
+        <div class="container">
+            <p class="m-0">Desarrollado para prueba técnica — Ciel Ingeniería &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container py-5">
+    <div class="row g-4 align-items-start justify-content-center">
+        <div class="col-lg-5">
+            <p class="index-tagline">Concurso de conocimiento</p>
+            <h1 class="fw-bold" style="font-size:2.4rem;color:var(--ciel-primary);line-height:1.15;">
+                Pon a prueba<br>tu <span style="color:var(--ciel-blue);">talento</span><br>técnico.
+            </h1>
+            <p class="mt-3 mb-4" style="color:var(--ciel-muted);font-size:15px;line-height:1.7;">
+                5 niveles de dificultad creciente. Preguntas aleatorias por ronda.
+                Retírate cuando quieras o ve por el premio mayor.
+            </p>
+
+            <hr class="divider-ciel" />
+
+            <div class="index-stat-card">
+                <div class="index-stat-icon icon-blue">
+                    <i class="ti ti-stack-2"></i>
+                </div>
+                <div>
+                    <p class="index-stat-label">Niveles totales</p>
+                    <p class="index-stat-value">5 rondas</p>
+                </div>
+            </div>
+
+            <div class="index-stat-card">
+                <div class="index-stat-icon icon-gold">
+                    <i class="ti ti-trophy"></i>
+                </div>
+                <div>
+                    <p class="index-stat-label">Premio mayor</p>
+                    <p class="index-stat-value">$6.800.000</p>
+                </div>
+            </div>
+
+            <div class="index-stat-card">
+                <div class="index-stat-icon icon-teal">
+                    <i class="ti ti-arrows-shuffle"></i>
+                </div>
+                <div>
+                    <p class="index-stat-label">Modo</p>
+                    <p class="index-stat-value">Preguntas aleatorias</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body p-4">
+                    <p class="form-section-title">Iniciar partida</p>
+                    <p class="form-section-sub">Ingresa tu nombre para comenzar el concurso</p>
+
+                    <form asp-action="StartGame" method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" style="font-size:13px;color:var(--ciel-text);">
+                                Nombre del jugador
+                            </label>
+                            <input type="text"
+                                   name="playerName"
+                                   class="form-control form-control-lg"
+                                   placeholder="¿Cómo te llamas?"
+                                   required />
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-ciel btn-lg">
+                                <i class="ti ti-player-play me-2"></i>Iniciar juego
+                            </button>
+                        </div>
+                    </form>
+
+                    <hr class="divider-ciel" />
+
+                    <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ciel-muted);margin-bottom:10px;">
+                        Escala de premios
+                    </p>
+                    <div class="d-flex gap-2">
+                        @{
+                            var prizes = new[] { ("N1", "$100K"), ("N2", "$200K"), ("N3", "$800K"), ("N4", "$2.4M"), ("N5", "$6.8M") };
+                        }
+                        @foreach (var (nivel, monto) in prizes)
+                        {
+                            var isFirst = nivel == "N1";
+                            <div class="flex-fill text-center py-2 px-1 rounded"
+                                 style="background:@(nivel == "N5" ? "#FFF8E6" : "#F8FAFD");
+                                border:1px solid @(nivel == "N5" ? "#D4900A" : "var(--ciel-border)");">
+                                <div class="fw-bold fw-mono" style="font-size:13px;color:@(nivel == "N5" ? "#D4900A" : "var(--ciel-primary)");">
+                                    @nivel
+                                </div>
+                                <div style="font-size:10px;font-family:var(--ciel-mono);color:@(nivel == "N5" ? "#D4900A" : "var(--ciel-muted)");">
+                                    @monto
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-2" style="font-size:12px;color:var(--ciel-muted);">
+                Si respondes mal, pierdes tu acumulado. Puedes retirarte antes de responder.
+            </p>
+        </div>
+
+    </div>
+</div>

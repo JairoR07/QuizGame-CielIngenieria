@@ -1,0 +1,128 @@
+﻿@model QuizGame.Models.Api.QuestionResponseDto
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Pregunta";
+    var playerName = Context.Session.GetString("PlayerName") ?? "Jugador";
+    var initials = playerName.Length >= 2
+        ? playerName.Substring(0, 2).ToUpper()
+        : playerName.ToUpper();
+    var accumulated = Context.Session.GetString("AccumulatedPrize") ?? "0";
+    var progressPct = Model.Level * 20;
+}
+
+<div class="container py-4">
+    <div class="row g-3 mb-4">
+        <div class="col-4">
+            <div class="metric-card">
+                <p class="metric-label">Premio esta ronda</p>
+                <p class="metric-value">$@Model.Prize.ToString("N0")</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="metric-card">
+                <p class="metric-label">Acumulado</p>
+                <p class="metric-value text-success">$@accumulated</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="metric-card d-flex align-items-center justify-content-between">
+                <div>
+                    <p class="metric-label">Progreso</p>
+                    <p class="metric-value">@Model.Level / 5</p>
+                </div>
+                <span class="badge-ciel">Nivel @Model.Level</span>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header-ciel">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="m-0 fw-bold">Concurso de Preguntas</h5>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="player-avatar">@initials</div>
+                    <span style="font-size:14px;color:rgba(255,255,255,0.75);">
+                        Jugador: <strong style="color:#fff;">@playerName</strong>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between mb-1" style="font-size:12px;color:var(--ciel-muted);">
+                <span>Nivel @Model.Level de 5</span>
+                <span>@progressPct%</span>
+            </div>
+            <div class="progress mb-4">
+                <div class="progress-bar"
+                     role="progressbar"
+                     style="width:@progressPct%">
+                </div>
+            </div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ciel-blue);margin-bottom:8px;">
+                Pregunta · Nivel @Model.Level
+            </p>
+            <h5 class="fw-bold mb-4" style="color:var(--ciel-primary);font-size:1.2rem;line-height:1.4;">
+                @Model.Statement
+            </h5>
+            <form asp-action="AnswerQuestion" method="post">
+                <input type="hidden" name="gameId" value="@ViewBag.GameId" />
+
+                <div class="row g-2 mb-4">
+                    @{
+                        var letters = new[] { "A", "B", "C", "D" };
+                        int idx = 0;
+                    }
+                    @foreach (var option in Model.Options)
+                    {
+                        var letter = idx < letters.Length ? letters[idx] : (idx + 1).ToString();
+                        idx++;
+                        <div class="col-md-6">
+                            <label class="option-card d-block w-100" style="cursor:pointer;">
+                                <div class="card-body">
+                                    <span class="option-letter">@letter</span>
+                                    <input class="d-none"
+                                           type="radio"
+                                           name="answerOptionId"
+                                           value="@option.Id"
+                                           required
+                                           onchange="selectOption(this)" />
+                                    <span style="font-size:15px;color:var(--ciel-text);">@option.Text</span>
+                                </div>
+                            </label>
+                        </div>
+                    }
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-ciel w-100" style="height:50px;">
+                            <i class="ti ti-check me-2"></i>Responder
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit"
+                                formaction="@Url.Action("WithdrawGame", "Home")"
+                                formmethod="post"
+                                formnovalidate
+                                class="btn btn-outline-danger w-100"
+                                style="height:50px;font-weight:600;">
+                            <i class="ti ti-door-exit me-2"></i>Retirarme
+                        </button>
+                    </div>
+                </div>
+                <input type="hidden" id="answerOptionText" name="answerOptionText" value="" />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+                function selectOption(input) {
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            input.closest('.option-card').classList.add('selected');
+            document.getElementById('answerOptionText').value =
+                input.closest('.option-card').querySelector('span:last-child').textContent.trim();
+        }
+    </script>
+}

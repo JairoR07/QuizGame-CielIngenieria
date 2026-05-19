@@ -1,0 +1,21 @@
+# Binarios y compilados
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Logs
+**/Logs/
+
+# Variables de entorno (contiene API keys)
+.env
+
+# Publicacion Docker
+**/publish/
+
+# Entity Framework migrations temp
+*.mdf
+*.ldf

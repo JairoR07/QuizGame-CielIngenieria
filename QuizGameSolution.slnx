@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Elementos de la solución/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="ApiQuizGame/ApiQuizGame.csproj" />
+  <Project Path="QuizGame/QuizGame.csproj" />
+</Solution>
